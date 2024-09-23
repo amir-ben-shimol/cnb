@@ -41,8 +41,10 @@ pnpm add -D cnb
 
 1. Add the following alias to your `.gitconfig`:
 
+```shell
 [alias]
-cnb = "!cnb"
+cnb = "!npx cnb"
+```
 
 2. Run the following command to create a new branch with naming conventions:
 
@@ -60,6 +62,50 @@ Example:
 The branch created will be: `feat/configure-notifications`.
 
 If your configuration requires a ticket ID (based on your config file), the flow will prompt you to enter that first.
+
+## 📁 Configuration
+
+You can customize the behavior of **cnb** by creating a configuration file in your project root called `cnb.config.ts` (for ES6 environments) or `cnb.config.cjs` (for CommonJS environments).
+
+### Configuration Options
+
+| Option                 | Type       | Description                                                                 | Default                    |
+| ---------------------- | ---------- | --------------------------------------------------------------------------- | -------------------------- |
+| `branchTypes`          | `string[]` | The types of branches you can select (e.g., `feat`, `fix`, `chore`, `docs`) | `['feat', 'fix', 'chore']` |
+| `maxDescriptionLength` | `number`   | The maximum length allowed for the branch description.                      | `20`                       |
+| `skipTicketId`         | `boolean`  | Whether to skip the ticket ID prompt.                                       | `false`                    |
+| `ticketIdPrefix`       | `string`   | The prefix to add to the ticket ID (e.g., `JIRA-`).                         | `T-`                       |
+
+### Example `cnb.config.ts` (ES6)
+
+```ts
+import type { CnbConfig } from 'cnb';
+
+const config: CnbConfig = {
+	branchTypes: ['feat', 'fix', 'chore', 'refactor'],
+	maxDescriptionLength: 30,
+	skipTicketId: false,
+	ticketIdPrefix: 'JIRA-',
+};
+
+export default config;
+```
+
+### Example `cnb.config.cjs` (CommonJS)
+
+```js
+module.exports = {
+	branchTypes: ['feat', 'fix', 'chore', 'docs'],
+	maxDescriptionLength: 50,
+	skipTicketId: true,
+	ticketIdPrefix: 'ISSUE-',
+};
+```
+
+## 🛠️ Note for ES6 vs. CommonJS Users
+
+-   **For ES6 users**: Create your configuration file as `cnb.config.ts` and use `export default`.
+-   **For CommonJS users**: Create your configuration file as `cnb.config.cjs` and use `module.exports`.
 
 ## 👥 Authors
 
