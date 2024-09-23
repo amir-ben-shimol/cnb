@@ -12,6 +12,26 @@
 		"type": "git",
 		"url": "https://github.com/amir-ben-shimol/cnb"
 	},
+	"keywords": [
+		"git",
+		"branch",
+		"cli",
+		"git-branch",
+		"branch-naming",
+		"git-hooks",
+		"branch-conventions",
+		"automation",
+		"naming-conventions",
+		"git-automation",
+		"devtools",
+		"branch-helper",
+		"ticket-prefix",
+		"developer-tools",
+		"typescript",
+		"cnb",
+		"simple-git",
+		"git-workflow"
+	],
 	"scripts": {
 		"husky:install": "husky",
 		"git:config": "git config --local include.path ../.gitconfig",
