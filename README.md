@@ -31,12 +31,6 @@ Install the package as a dev dependency:
 npm i -D cnb
 ```
 
-or if you're using **pnpm**:
-
-```bash
-pnpm add -D cnb
-```
-
 ## 🛠️ Usage
 
 1. Add the following alias to your `.gitconfig`:
@@ -46,7 +40,25 @@ pnpm add -D cnb
 cnb = "!npx cnb"
 ```
 
-2. Run the following command to create a new branch with naming conventions:
+2. In your `package.json`, add this under the prepare script:
+
+```json
+"prepare": "git config --local include.path ../.gitconfig",
+```
+
+3. Make sure the prepare script runs before trying the new git alias. You can do this by running (only once):
+
+```bash
+npm i
+```
+
+Or explicitly run the script:
+
+```bash
+npm run prepare
+```
+
+4. Run the following command to create a new branch with naming conventions:
 
 ```bash
 git cnb
