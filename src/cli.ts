@@ -21,7 +21,7 @@ async function run() {
 	let branchName = `${branchType}/${formattedDescription}`;
 
 	if (ticketId) {
-		branchName = `${ticketId}/${branchName}`;
+		branchName = `T-${ticketId}/${branchName}`;
 	}
 
 	await createAndSwitchBranch(branchName);
