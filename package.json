@@ -1,6 +1,6 @@
 {
 	"name": "cnb",
-	"version": "1.0.2",
+	"version": "1.0.10",
 	"description": "A simple tool for enforcing Git branch naming conventions",
 	"main": "dist/index.js",
 	"bin": {
@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@types/node": "22.5.5",
+		"chalk": "4.1.2",
 		"inquirer": "11.0.2",
 		"simple-git": "3.27.0"
 	},
@@ -58,7 +59,6 @@
 	},
 	"packageManager": "pnpm@9.10.0",
 	"engines": {
-		"npm": "please-use-pnpm",
 		"yarn": "please-use-pnpm",
 		"pnpm": ">=9",
 		"node": ">=20"

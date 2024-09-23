@@ -1,54 +1,47 @@
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import chalk from 'chalk';
 import type { CnbConfig } from './types/config-types';
 import { promptForBranchType, promptForDescription, promptForTicketId } from './helpers/prompt-handler';
 import { createAndSwitchBranch } from './helpers/git-helper';
-import { defaultConfig } from './cnb';
+import { defaultConfig } from './data/default-config';
 import { toKebabCase } from './utils/string-utils';
+import { loadUserConfig, mergeConfigs } from './helpers/config';
 
-async function loadUserConfig(): Promise<Partial<CnbConfig>> {
-	const configPath = resolve(process.cwd(), 'cnb.config.ts');
+/**
+ * run - The main function that handles the flow of creating a new branch based on the user's input and config settings.
+ * It prompts the user for a ticket ID (if not skipped), branch type, and branch description.
+ * It then formats the branch name according to the conventions specified in the config and switches to the new branch.
+ *
+ * The user configuration, if provided, will override the default settings.
+ * The branch name will be displayed in the console, and `createAndSwitchBranch` will be called to create it.
+ *
+ * If an error occurs during the process, it logs a friendly exit message to the console.
+ *
+ * @returns {Promise<void>} Resolves when the branch is successfully created or exits with an error message.
+ */
+const run = async (): Promise<void> => {
+	console.log(chalk.blue.bold('🚀 Welcome to CNB!'));
 
-	if (existsSync(configPath)) {
-		console.log('Custom config found. Loading...');
-		const configModule = await import(configPath);
-
-		return configModule.default;
-	}
-
-	console.log('No custom config found. Using default config.');
-
-	return {};
-}
-
-async function run() {
-	const tsNode = await import('ts-node');
-
-	tsNode.register();
-
-	const userConfig = await loadUserConfig(); // Load user config if it exists
-	const config: CnbConfig = { ...defaultConfig, ...userConfig }; // Merge default and user config
-
+	const userConfig = loadUserConfig();
+	const config: CnbConfig = mergeConfigs(userConfig, defaultConfig);
 	let ticketId = '';
 
 	if (!config.skipTicketId) {
 		ticketId = await promptForTicketId();
 	}
 
-	const branchType = await promptForBranchType();
+	const branchType = await promptForBranchType(config.branchTypes);
 	const description = await promptForDescription(config.maxDescriptionLength);
-
 	const formattedDescription = toKebabCase(description);
 	let branchName = `${branchType}/${formattedDescription}`;
 
 	if (ticketId) {
-		branchName = `${config.ticketIdPrefix || 'T-'}${ticketId}/${branchName}`;
+		branchName = `${config.ticketIdPrefix}${ticketId}/${branchName}`;
 	}
 
+	console.log(chalk.green.bold(`✅ Creating branch: ${chalk.yellow.bold(branchName)}`));
 	await createAndSwitchBranch(branchName);
-}
+};
 
-run().catch((error) => {
-	console.error('Error creating branch:', error);
-	process.exit(1);
+run().catch(() => {
+	console.error(chalk.redBright.bold('See ya! 👋'));
 });
