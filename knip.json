@@ -1,0 +1,8 @@
+{
+	"$schema": "./node_modules/knip/schema.json",
+	"entry": "src/**/*",
+	"ignore": ["release.config.cjs", "inflint.config.cjs"],
+	"ignoreDependencies": ["@commitlint/cli", "commitizen"],
+	"ignoreBinaries": ["ts-node"],
+	"project": ["./src/**/*"]
+}

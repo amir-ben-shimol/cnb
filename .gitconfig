@@ -1,0 +1,4 @@
+[init]
+defaultBranch = main
+[alias]
+cnb = "!npx cnb"
