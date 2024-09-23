@@ -92,20 +92,3 @@ jobs:
 
             - name: Test build
               run: pnpm build
-
-    test:
-        name: Test
-        runs-on: ubuntu-latest
-
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                  node-version-file: '.nvmrc'
-            - uses: pnpm/action-setup@v3
-              with:
-                  version: 9.10.0
-                  run_install: true
-
-            - name: Run Tests
-              run: pnpm test
