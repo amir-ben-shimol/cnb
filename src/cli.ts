@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk';
 import type { CnbConfig } from './types/config-types';
 import { promptForBranchType, promptForDescription, promptForTicketId } from './helpers/prompt-handler';
