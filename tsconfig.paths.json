@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"@/generators/*": ["src/generators/*"],
+			"@/types/*": ["src/types/*"],
+			"@/utils/*": ["src/utils/*"]
+		}
+	}
+}
