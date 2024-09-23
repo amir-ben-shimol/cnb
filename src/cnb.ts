@@ -4,4 +4,5 @@ export const defaultConfig: CnbConfig = {
 	branchTypes: ['feat', 'bugfix', 'chore', 'docs', 'style'],
 	maxDescriptionLength: 20,
 	skipTicketId: false,
+	ticketIdPrefix: 'T-',
 };
