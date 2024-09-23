@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":semanticCommitTypeAll(chore)", ":semanticCommitScopeDisabled"],
+  "regexManagers": [
+    {
+      "fileMatch": ["package.json"],
+      "matchStrings": ["\"node\": \"(?<currentValue>.*)\""],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    },
+    {
+      "fileMatch": ["^docker\\/Dockerfile\\..*$", "^(\\.github\\/workflows)\\/[^/]+\\.yaml$"],
+      "matchStrings": ["FROM node:(?<currentValue>.*)"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    },
+    {
+      "fileMatch": ["^docker\\/Dockerfile\\..*$"],
+      "matchStrings": ["pnpm@(?<currentValue>.*)"],
+      "depNameTemplate": "pnpm",
+      "datasourceTemplate": "npm"
+    }
+  ],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
+  "commitMessageAction": "🤖 Update",
+  "stabilityDays": 7,
+  "reviewersFromCodeOwners": true,
+  "prHourlyLimit": 3,
+  "schedule": ["every weekend"]
+}

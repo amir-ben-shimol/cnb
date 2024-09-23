@@ -1,0 +1,111 @@
+name: Integration
+
+on:
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    knip:
+        name: Knip
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Run Knip
+              run: pnpm knip
+
+    inflint:
+        name: Inflint
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Run Inflint
+              run: pnpm inflint
+
+    typescript:
+        name: TypeScript
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Test TypeScript
+              run: pnpm run type-check
+
+    eslint:
+        name: ESLint
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Test ESLint
+              run: pnpm lint
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Test build
+              run: pnpm build
+
+    test:
+        name: Test
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9.10.0
+                  run_install: true
+
+            - name: Run Tests
+              run: pnpm test
