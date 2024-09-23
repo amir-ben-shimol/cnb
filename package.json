@@ -6,6 +6,12 @@
 	"bin": {
 		"cnb": "dist/cli.js"
 	},
+	"author": "Amir Ben Shimol",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/amir-ben-shimol/cnb"
+	},
 	"scripts": {
 		"husky:install": "husky",
 		"git:config": "git config --local include.path ../.gitconfig",
