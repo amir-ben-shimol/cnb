@@ -1,0 +1,20 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/dist": true,
+		"pnpm-lock.yaml": true
+	},
+	"files.exclude": {
+		"tsconfig.tsbuildinfo": true
+	},
+	"material-icon-theme.files.associations": {
+		"routes.ts": "routing",
+		"inflint.config.cjs": "Minecraft",
+		".env.production.test": "Tune",
+		".env.qa.test": "Tune"
+	},
+	"task.allowAutomaticTasks": "on"
+}
