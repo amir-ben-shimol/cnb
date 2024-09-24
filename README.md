@@ -85,13 +85,13 @@ You can customize the behavior of **cnb** by creating a configuration file in yo
 
 ### Configuration Options
 
-| Option                 | Type       | Description                                                                  | Default                             |
-| ---------------------- | ---------- | ---------------------------------------------------------------------------- | ----------------------------------- |
-| `branchTypes`          | `string[]` | The types of branches you can select (e.g., `feat`, `fix`, `chore`, `docs`)  | `['feat', 'fix', 'chore', 'style']` |
-| `maxDescriptionLength` | `number`   | The maximum length allowed for the branch description.                       | `20`                                |
-| `skipTicketId`         | `boolean`  | Whether to skip the ticket ID prompt.                                        | `false`                             |
-| `ticketIdPrefix`       | `string`   | The prefix to add to the ticket ID (e.g., `JIRA-`).                          | `T-`                                |
-| `separator`            | `string`   | The character(s) used to separate words in the branch name (e.g., `_`, `/`). | `-`                                 |
+| Option                 | Type       | Description                                                                                     | Default                             |
+| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `branchTypes`          | `string[]` | The types of branches you can select (e.g., `feat`, `fix`, `chore`, `docs`)                     | `['feat', 'fix', 'chore', 'style']` |
+| `maxDescriptionLength` | `number`   | The maximum length allowed for the branch description.                                          | `20`                                |
+| `skipTicketId`         | `boolean`  | Whether to skip the ticket ID prompt.                                                           | `false`                             |
+| `ticketIdPrefix`       | `string`   | The prefix to add to the ticket ID (e.g., `JIRA-`).                                             | `T-`                                |
+| `separator`            | `string`   | The character(s) used to separate the ticket ID, branch type, and branch name (e.g., `/`, `_`). | `/`                                 |
 
 ### Example `cnb.config.ts` (ES6)
 

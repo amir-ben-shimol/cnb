@@ -1,6 +1,6 @@
 {
 	"name": "cnb",
-	"version": "1.1.5",
+	"version": "1.1.6",
 	"description": "CLI tool for enforcing consistent Git branch naming conventions across teams and projects",
 	"main": "dist/index.js",
 	"bin": {
