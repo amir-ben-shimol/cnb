@@ -3,3 +3,4 @@ dist
 tsconfig.build.tsbuildinfo
 .DS_Store
 cnb.config.ts
+cnb.config.cjs

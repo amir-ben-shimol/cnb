@@ -23,6 +23,10 @@
 
 ✨ **cnb** is a simple and customizable CLI tool that helps you create Git branches following naming conventions. No more manual typing! Just select options, add a description, and you're good to go!
 
+## Demo
+
+![cnb](assets/demo.gif)
+
 ## 📦 Installation
 
 Install the package as a dev dependency:
