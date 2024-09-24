@@ -19,9 +19,9 @@
 
 <hr />
 
-# 🚀 Create New Branch
+# 🚀 Create New Branch & Lint Branch Names
 
-✨ **cnb** is a simple and customizable CLI tool that helps you create Git branches following naming conventions. No more manual typing! Just select options, add a description, and you're good to go!
+✨ **cnb** is a simple and customizable CLI tool that helps you create Git branches following naming conventions, and validates (lints) branch names to ensure they follow the configured conventions.
 
 ## 🎬 Demo
 
@@ -36,6 +36,8 @@ npm i -D cnb
 ```
 
 ## 🛠️ Usage
+
+### Creating a New Branch
 
 1. Add the following alias to your `.gitconfig`:
 
@@ -68,7 +70,7 @@ npm run prepare
 git cnb
 ```
 
-This will prompt you with a set of options to choose from (e.g., `feat`, `bugfix`, `chore`, etc.). You'll also provide a short description that will be formatted into kebab-case.
+This will prompt you with a set of options to choose from (e.g., `feat`, `fix`, `chore`, etc.). You'll also provide a short description that will be formatted into kebab-case.
 
 Example:
 
@@ -79,6 +81,24 @@ The branch created will be: `feat/configure-notifications`.
 
 If your configuration requires a ticket ID (based on your config file), the flow will prompt you to enter that first.
 
+### Linting a Branch Name
+
+You can also use **cnb** to lint and validate if the current branch name follows your configured conventions.
+
+1. Add the following script to your `package.json`:
+
+```json
+"scripts": {
+	"cnb:check": "cnb --check"
+}
+```
+
+2. Run the script to lint the current branch name:
+
+```bash
+npm run cnb:check
+```
+
 ## 📁 Configuration
 
 You can customize the behavior of **cnb** by creating a configuration file in your project root called `cnb.config.ts` (for ES6 environments) or `cnb.config.cjs` (for CommonJS environments).
@@ -87,7 +107,7 @@ You can customize the behavior of **cnb** by creating a configuration file in yo
 
 | Option                 | Type       | Description                                                                                     | Default                             |
 | ---------------------- | ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------- |
-| `branchTypes`          | `string[]` | The types of branches you can select (e.g., `feat`, `fix`, `chore`, `docs`)                     | `['feat', 'fix', 'chore', 'style']` |
+| `branchTypes`          | `string[]` | The types of branches you can select (e.g., `feat`, `fix`, `chore`, `style`)                    | `['feat', 'fix', 'chore', 'style']` |
 | `maxDescriptionLength` | `number`   | The maximum length allowed for the branch description.                                          | `20`                                |
 | `skipTicketId`         | `boolean`  | Whether to skip the ticket ID prompt.                                                           | `false`                             |
 | `ticketIdPrefix`       | `string`   | The prefix to add to the ticket ID (e.g., `JIRA-`).                                             | `T-`                                |
@@ -99,8 +119,8 @@ You can customize the behavior of **cnb** by creating a configuration file in yo
 import type { CnbConfig } from 'cnb';
 
 const config: CnbConfig = {
-	branchTypes: ['feat', 'fix', 'chore', 'refactor'],
-	maxDescriptionLength: 30,
+	branchTypes: ['feat', 'fix', 'chore', 'style'],
+	maxDescriptionLength: 20,
 	skipTicketId: false,
 	ticketIdPrefix: 'JIRA-',
 };
@@ -112,10 +132,10 @@ export default config;
 
 ```js
 module.exports = {
-	branchTypes: ['feat', 'fix', 'chore', 'docs'],
-	maxDescriptionLength: 50,
-	skipTicketId: true,
-	ticketIdPrefix: 'ISSUE-',
+	branchTypes: ['feat', 'fix', 'chore', 'style'],
+	maxDescriptionLength: 20,
+	skipTicketId: false,
+	ticketIdPrefix: 'JIRA-',
 };
 ```
 

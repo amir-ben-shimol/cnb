@@ -18,3 +18,20 @@ export const createAndSwitchBranch = async (branchName: string): Promise<void> =
 	await git.checkoutLocalBranch(branchName);
 	console.log(`Switched to new branch: ${branchName}`);
 };
+
+/**
+ * getCurrentBranchName - Retrieves the current Git branch name using simple-git.
+ *
+ * @returns {Promise<string>} The current branch name.
+ */
+export const getCurrentBranchName = async (): Promise<string> => {
+	try {
+		const branchSummary = await git.branchLocal();
+
+		return branchSummary.current;
+	} catch (error) {
+		console.error('❌ Unable to retrieve the current branch name.');
+
+		return '';
+	}
+};

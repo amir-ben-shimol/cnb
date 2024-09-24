@@ -1,6 +1,6 @@
 {
 	"name": "cnb",
-	"version": "1.1.6",
+	"version": "1.2.0",
 	"description": "CLI tool for enforcing consistent Git branch naming conventions across teams and projects",
 	"main": "dist/index.js",
 	"bin": {
@@ -43,7 +43,8 @@
 		"lint": "eslint -c ./.eslintrc.cjs --ignore-path ./.eslintignore \"./**/*.{ts,tsx,cjs}\"",
 		"knip": "knip -c ./knip.json",
 		"inflint": "inflint -c ./inflint.config.cjs",
-		"prettier": "prettier --check **/*.{ts,js,cjs,json,yaml}"
+		"prettier": "prettier --check **/*.{ts,js,cjs,json,yaml}",
+		"cnb": "npx cnb --check"
 	},
 	"dependencies": {
 		"@types/node": "22.5.5",
