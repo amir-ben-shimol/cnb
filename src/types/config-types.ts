@@ -19,7 +19,7 @@ export type CnbConfig = {
 	 * Default: false
 	 * Example: true
 	 */
-	readonly skipTicketId?: boolean;
+	readonly skipTicketId: boolean;
 
 	/**
 	 * @property {string} ticketIdPrefix - The prefix to prepend to the ticket ID when constructing the branch name.
@@ -27,4 +27,11 @@ export type CnbConfig = {
 	 * Example: 'JIRA-' or 'ISSUE-'
 	 */
 	readonly ticketIdPrefix: string;
+
+	/**
+	 * @property {string} separator - The character(s) used to separate words in the branch name.
+	 * This can be customized based on project or organizational conventions, such as '/' or '_'.
+	 * Example: '/'
+	 */
+	readonly separator: string;
 };

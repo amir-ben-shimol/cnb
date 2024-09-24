@@ -12,4 +12,5 @@ export const defaultConfig: CnbConfig = {
 	maxDescriptionLength: 20,
 	skipTicketId: false,
 	ticketIdPrefix: 'T-',
+	separator: '/',
 };

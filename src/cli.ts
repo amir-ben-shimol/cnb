@@ -6,7 +6,7 @@ import { promptForBranchType, promptForDescription, promptForTicketId } from './
 import { createAndSwitchBranch } from './helpers/git-helper';
 import { defaultConfig } from './data/default-config';
 import { toKebabCase } from './utils/string-utils';
-import { loadUserConfig, mergeConfigs } from './helpers/config';
+import { loadUserConfig, mergeConfigs, validateUserConfig } from './helpers/config';
 
 /**
  * run - The main function that handles the flow of creating a new branch based on the user's input and config settings.
@@ -24,7 +24,17 @@ const run = async (): Promise<void> => {
 	console.log(chalk.blue.bold('🚀 Welcome to CNB!'));
 
 	const userConfig = loadUserConfig();
+
 	const config: CnbConfig = mergeConfigs(userConfig, defaultConfig);
+
+	const isValidConfig = validateUserConfig(config);
+
+	if (!isValidConfig) {
+		console.error(chalk.redBright.bold('❌ Invalid configuration. Please check your config file'));
+
+		return;
+	}
+
 	let ticketId = '';
 
 	if (!config.skipTicketId) {
@@ -34,10 +44,10 @@ const run = async (): Promise<void> => {
 	const branchType = await promptForBranchType(config.branchTypes);
 	const description = await promptForDescription(config.maxDescriptionLength);
 	const formattedDescription = toKebabCase(description);
-	let branchName = `${branchType}/${formattedDescription}`;
+	let branchName = `${branchType}${config.separator}${formattedDescription}`;
 
 	if (ticketId) {
-		branchName = `${config.ticketIdPrefix}${ticketId}/${branchName}`;
+		branchName = `${config.ticketIdPrefix}${ticketId}${config.separator}${branchName}`;
 	}
 
 	console.log(chalk.green.bold(`✅ Creating branch: ${chalk.yellow.bold(branchName)}`));
