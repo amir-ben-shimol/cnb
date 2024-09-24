@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import chalk from 'chalk';
 import type { CnbConfig } from '../types/config-types';
+import { isValidBranchChars } from './validators';
 
 /**
  * loadUserConfig - This function attempts to load the user's custom configuration file.
@@ -42,6 +43,50 @@ export const loadUserConfig = (): Partial<CnbConfig> => {
 	console.log(chalk.yellow('ℹ️ You can create a "cnb.config.ts" or "cnb.config.cjs" file to customize your branch naming conventions.'));
 
 	return {};
+};
+
+/**
+ * validateUserConfig - This function validates the user's configuration object to ensure it meets the required structure.
+ * It checks that the `branchTypes` property is an array of strings and that the `maxDescriptionLength` is a positive number and the skipTicketId is a boolean and the ticketIdPrefix and the separator are passing the isValidBranchChars function.
+ * If any validation fails, it logs an error message and exits the process.
+ * If the configuration is valid, it returns true.
+ *
+ * @param {Partial<CnbConfig>} userConfig - The user's configuration object to validate.
+ *
+ * @returns {boolean} True if the configuration is valid, false otherwise.
+ */
+export const validateUserConfig = (userConfig: Partial<CnbConfig>): boolean => {
+	if (!Array.isArray(userConfig.branchTypes) || !userConfig.branchTypes.every((type) => typeof type === 'string')) {
+		console.error(chalk.red('❌ Error: branchTypes must be an array of strings.'));
+
+		return false;
+	}
+
+	if (typeof userConfig.maxDescriptionLength !== 'number' || userConfig.maxDescriptionLength <= 0) {
+		console.error(chalk.red('❌ Error: maxDescriptionLength must be a positive number.'));
+
+		return false;
+	}
+
+	if (typeof userConfig.skipTicketId !== 'boolean') {
+		console.error(chalk.red('❌ Error: skipTicketId must be a boolean.'));
+
+		return false;
+	}
+
+	if (typeof userConfig.ticketIdPrefix !== 'string' || !isValidBranchChars(userConfig.ticketIdPrefix)) {
+		console.error(chalk.red('❌ Error: ticketIdPrefix must be a string with valid branch characters.'));
+
+		return false;
+	}
+
+	if (typeof userConfig.separator !== 'string' || !isValidBranchChars(userConfig.separator)) {
+		console.error(chalk.red('❌ Error: separator must be a string with valid branch characters.'));
+
+		return false;
+	}
+
+	return true;
 };
 
 /**
