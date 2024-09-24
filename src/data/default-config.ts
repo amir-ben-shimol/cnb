@@ -8,7 +8,7 @@ import type { CnbConfig } from '../types/config-types';
  * @type {CnbConfig}
  */
 export const defaultConfig: CnbConfig = {
-	branchTypes: ['feat', 'bugfix', 'chore', 'docs', 'style'],
+	branchTypes: ['feat', 'fix', 'chore', 'style'],
 	maxDescriptionLength: 20,
 	skipTicketId: false,
 	ticketIdPrefix: 'T-',
