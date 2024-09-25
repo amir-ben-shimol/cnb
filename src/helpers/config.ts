@@ -2,6 +2,7 @@
 import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import chalk from 'chalk';
+import { register } from 'ts-node';
 import type { CnbConfig } from '../types/config-types';
 import { isValidBranchChars } from './validators';
 
@@ -22,6 +23,11 @@ export const loadUserConfig = (): Partial<CnbConfig> => {
 
 	if (existsSync(tsConfigPath)) {
 		try {
+			register({
+				compilerOptions: {
+					module: 'commonjs',
+				},
+			});
 			const configModule = require(tsConfigPath);
 
 			return configModule.default;
