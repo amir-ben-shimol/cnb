@@ -19,7 +19,7 @@
 
 <hr />
 
-# 🚀 Create New Branch & Lint Branch Names
+# 🚀 Create New Branch
 
 ✨ **cnb** is a simple and customizable CLI tool that helps you create Git branches following naming conventions, and validates (lints) branch names to ensure they follow the configured conventions.
 
@@ -46,10 +46,12 @@ npm i -D cnb
 cnb = "!npx cnb"
 ```
 
-2. In your `package.json`, add this under the prepare script:
+2. Add the following script to your `package.json`:
 
 ```json
-"prepare": "git config --local include.path ../.gitconfig",
+"scripts": {
+	"prepare": "git config --local include.path ../.gitconfig",
+}
 ```
 
 3. Make sure the prepare script runs before trying the new git alias. You can do this by running (only once):

@@ -1,6 +1,6 @@
 {
 	"name": "cnb",
-	"version": "1.2.0",
+	"version": "1.2.2",
 	"description": "CLI tool for enforcing consistent Git branch naming conventions across teams and projects",
 	"main": "dist/index.js",
 	"bin": {
@@ -30,7 +30,12 @@
 		"typescript",
 		"cnb",
 		"simple-git",
-		"git-workflow"
+		"git-workflow",
+		"git-branch-naming",
+		"branch-naming-conventions",
+		"create-new-branch",
+		"lint",
+		"linter"
 	],
 	"scripts": {
 		"husky:install": "husky",
