@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/amir-ben-shimol/cnb/compare/v1.10.0...v1.11.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* 🐞register complier when reading .ts config file ([4eacbfa](https://github.com/amir-ben-shimol/cnb/commit/4eacbfa7292606159d04f99c94f0e78fb80e654f))
+
 # [1.10.0](https://github.com/amir-ben-shimol/cnb/compare/v1.9.0...v1.10.0) (2024-09-25)
 
 # [1.9.0](https://github.com/amir-ben-shimol/cnb/compare/v1.8.0...v1.9.0) (2024-09-24)
