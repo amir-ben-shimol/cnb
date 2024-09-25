@@ -1,3 +1,5 @@
+# [1.10.0](https://github.com/amir-ben-shimol/cnb/compare/v1.9.0...v1.10.0) (2024-09-25)
+
 # [1.9.0](https://github.com/amir-ben-shimol/cnb/compare/v1.8.0...v1.9.0) (2024-09-24)
 
 
