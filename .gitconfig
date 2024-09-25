@@ -2,3 +2,4 @@
 defaultBranch = main
 [alias]
 cnb = "!npx cnb"
+cmt = "!npx cz"
