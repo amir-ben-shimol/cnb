@@ -1,4 +1,4 @@
-export type CnbConfig = {
+export type Config = {
 	/**
 	 * @property {string[]} branchTypes - An array of allowed branch types, such as 'feat', 'fix', 'chore', etc.
 	 * These are the options the user will be prompted to choose from when creating a new branch.
@@ -35,3 +35,5 @@ export type CnbConfig = {
 	 */
 	readonly separator: string;
 };
+
+export type CnbConfig = Partial<Config>;

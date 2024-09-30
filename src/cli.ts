@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk';
-import type { CnbConfig } from './types/config-types';
+import type { Config } from './types/config-types';
 import { promptForBranchType, promptForDescription, promptForTicketId } from './helpers/prompt-handler';
 import { createAndSwitchBranch, getCurrentBranchName } from './helpers/git-helper';
 import { defaultConfig } from './data/default-config';
@@ -15,7 +15,7 @@ import { CHECK_FLAG } from './data/consts';
  */
 const run = async (): Promise<void> => {
 	const userConfig = loadUserConfig();
-	const config: CnbConfig = mergeConfigs(userConfig, defaultConfig);
+	const config: Config = mergeConfigs(userConfig, defaultConfig);
 
 	const isValidConfig = validateUserConfig(config);
 

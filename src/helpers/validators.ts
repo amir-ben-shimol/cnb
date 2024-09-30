@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { CnbConfig } from '../types/config-types';
+import type { Config } from '../types/config-types';
 
 /* eslint-disable no-useless-escape */
 const validBranchCharsRegex = /^[a-zA-Z0-9-_\/\\]+$/;
@@ -14,9 +14,9 @@ export const isValidBranchChars = (separator?: string): boolean => {
  * validateBranchName - Checks if the current branch name follows the convention.
  *
  * @param branchName {string} The current branch name to validate.
- * @param config {CnbConfig} The configuration settings to validate against.
+ * @param config {Config} The configuration settings to validate against.
  */
-export const validateBranchName = (branchName: string, config: CnbConfig) => {
+export const validateBranchName = (branchName: string, config: Config) => {
 	const regex = new RegExp(`^(${config.ticketIdPrefix}\\d+${config.separator})?(${config.branchTypes.join('|')})${config.separator}[a-z0-9]+(-[a-z0-9]+)*$`);
 
 	if (!regex.test(branchName)) {

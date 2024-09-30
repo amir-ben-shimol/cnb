@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import chalk from 'chalk';
 import { register } from 'ts-node';
-import type { CnbConfig } from '../types/config-types';
+import type { CnbConfig, Config } from '../types/config-types';
 import { isValidBranchChars } from './validators';
 
 /**
@@ -101,11 +101,11 @@ export const validateUserConfig = (userConfig: Partial<CnbConfig>): boolean => {
  * All other settings are merged such that the user's settings take precedence over the defaults.
  *
  * @param {Partial<CnbConfig>} userConfig - The configuration provided by the user, which may override default settings.
- * @param {CnbConfig} defaultConfig - The default configuration that will be used if the user does not provide one.
+ * @param {Config} defaultConfig - The default configuration that will be used if the user does not provide one.
  *
  * @returns {CnbConfig} The final merged configuration, combining the user and default settings.
  */
-export const mergeConfigs = (userConfig: Partial<CnbConfig>, defaultConfig: CnbConfig): CnbConfig => {
+export const mergeConfigs = (userConfig: Partial<CnbConfig>, defaultConfig: Config): Config => {
 	const branchTypes = userConfig.branchTypes || defaultConfig.branchTypes;
 
 	return {
